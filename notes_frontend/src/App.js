@@ -1,47 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import NotesPage from "./pages/NotesPage";
 
 // PUBLIC_INTERFACE
 function App() {
-  const [theme, setTheme] = useState('light');
-
-  // Effect to apply theme to document element
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
-
+  /** Root application shell with top navigation and the Notes page. */
   return (
-    <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="AppRoot">
+      <header className="topNav">
+        <div className="navInner">
+          <div className="brand">
+            <span className="brandMark" aria-hidden="true">
+              N
+            </span>
+            <div className="brandText">
+              <div className="brandTitle">Notes</div>
+              <div className="brandSubtitle">Simple Notes Manager</div>
+            </div>
+          </div>
+
+          <div className="navRight">
+            <a
+              className="navLink"
+              href="https://react.dev"
+              target="_blank"
+              rel="noreferrer"
+            >
+              React
+            </a>
+            <a
+              className="navLink"
+              href="https://fastapi.tiangolo.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              FastAPI
+            </a>
+          </div>
+        </div>
       </header>
+
+      <main className="main">
+        <NotesPage />
+      </main>
+
+      <footer className="footer">
+        <div className="footerInner">
+          <span className="muted">
+            Built with a light, modern style. Primary:{" "}
+            <span className="colorSwatch" style={{ background: "#3b82f6" }} />{" "}
+            Secondary:{" "}
+            <span className="colorSwatch" style={{ background: "#64748b" }} />{" "}
+            Success:{" "}
+            <span className="colorSwatch" style={{ background: "#06b6d4" }} />{" "}
+            Error:{" "}
+            <span className="colorSwatch" style={{ background: "#EF4444" }} />
+          </span>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -1,104 +1,507 @@
-/* CSS Variables for Theme Management */
+/* Light/modern style guide variables */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --primary: #3b82f6;
+  --secondary: #64748b;
+  --success: #06b6d4;
+  --error: #ef4444;
+
+  --background: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+
+  --border: rgba(17, 24, 39, 0.12);
+  --shadow: 0 10px 25px rgba(17, 24, 39, 0.08);
+  --shadow-sm: 0 6px 16px rgba(17, 24, 39, 0.08);
+
+  --radius: 14px;
+  --radius-sm: 10px;
+
+  --focus: 0 0 0 3px rgba(59, 130, 246, 0.25);
+
+  --font: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+* {
+  box-sizing: border-box;
 }
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+.AppRoot {
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.topNav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(249, 250, 251, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brandMark {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(6, 182, 212, 0.18));
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.brandText {
+  min-width: 0;
+}
+
+.brandTitle {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.brandSubtitle {
+  font-size: 12px;
+  color: var(--secondary);
+  margin-top: 2px;
+}
+
+.navRight {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.navLink {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.navLink:hover {
+  background: rgba(100, 116, 139, 0.08);
+  color: var(--text);
+}
+
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 20px 34px;
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 20px;
+}
+
+.footerInner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Layout */
+.page {
+  width: 100%;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.leftCol,
+.rightCol {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  gap: 16px;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Typography helpers */
+.h1 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.h2 {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.muted {
+  color: var(--secondary);
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.codeInline {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  background: rgba(100, 116, 139, 0.08);
+  border: 1px solid rgba(100, 116, 139, 0.18);
+  padding: 2px 6px;
   border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 700;
+  font-size: 13px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.05s ease, box-shadow 0.2s ease, background 0.2s ease,
+    color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  user-select: none;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.btn:active {
+  transform: translateY(1px);
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.btnPrimary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 10px 18px rgba(59, 130, 246, 0.22);
+}
+
+.btnPrimary:hover {
+  background: #2f6fe0;
+}
+
+.btnSecondary {
+  background: rgba(100, 116, 139, 0.08);
+  border-color: rgba(100, 116, 139, 0.2);
+  color: var(--text);
+}
+
+.btnSecondary:hover {
+  background: rgba(100, 116, 139, 0.12);
+}
+
+.btnDanger {
+  background: rgba(239, 68, 68, 0.10);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: #991b1b;
+}
+
+.btnDanger:hover {
+  background: rgba(239, 68, 68, 0.14);
+}
+
+.btnSmall {
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/* Forms */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldSpan2 {
+  grid-column: span 2;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid rgba(17, 24, 39, 0.14);
+  background: white;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.input:focus,
+.textarea:focus {
+  box-shadow: var(--focus);
+  border-color: rgba(59, 130, 246, 0.55);
+}
+
+.inputError {
+  border-color: rgba(239, 68, 68, 0.65);
+}
+
+.fieldError {
+  color: var(--error);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* Notes list */
+.notesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.noteItem {
+  border: 1px solid rgba(17, 24, 39, 0.10);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.noteItemActive {
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+.noteBody {
+  min-width: 0;
+  flex: 1;
+}
+
+.noteTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.noteTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.noteContent {
+  margin: 8px 0 0;
+  color: rgba(17, 24, 39, 0.82);
+  font-size: 13px;
+  line-height: 1.45;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.noteActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Alerts / badges */
+.alert {
+  border-radius: var(--radius-sm);
+  padding: 12px 12px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.alertError {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.22);
+  color: #7f1d1d;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.10);
+  border: 1px solid rgba(100, 116, 139, 0.20);
+  color: rgba(17, 24, 39, 0.8);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.badgeInfo {
+  background: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.22);
+  color: rgba(17, 24, 39, 0.85);
+}
+
+.emptyState {
+  padding: 14px 4px 4px;
+  text-align: left;
+}
+
+.emptyTitle {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* Skeleton loading */
+.skeletonList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 6px 0 0;
+}
+
+.skeletonRow {
+  height: 56px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    rgba(100, 116, 139, 0.08),
+    rgba(100, 116, 139, 0.14),
+    rgba(100, 116, 139, 0.08)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.25s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 180% 0;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    background-position: -20% 0;
   }
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+.toolbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toolbarActions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.infoCard {
+  border-left: 3px solid rgba(6, 182, 212, 0.35);
+}
+
+.colorSwatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(17, 24, 39, 0.12);
+  vertical-align: middle;
+  margin: 0 4px;
+}
+
+/* Responsive */
+@media (max-width: 920px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+  .navInner {
+    padding: 12px 16px;
+  }
+  .main {
+    padding: 14px 16px 30px;
+  }
+}
+
+@media (max-width: 520px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  .fieldSpan2 {
+    grid-column: auto;
+  }
+  .noteItem {
+    flex-direction: column;
+  }
+  .noteActions {
+    width: 100%;
+    justify-content: flex-end;
   }
 }
